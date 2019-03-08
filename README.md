@@ -46,7 +46,7 @@ Then, add this dependency to your app build.gradle file:
 
 ```
 	dependencies {
-		compile 'com.github.cdisdero:CRDCrypt-Android:1.0.1'
+		compile 'com.github.cdisdero:CRDCrypt-Android:1.0.2'
 	}
 ```
 
