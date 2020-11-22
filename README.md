@@ -16,7 +16,7 @@ This code library provides a simple way to encrypt and decrypt data using the AE
 
 ## Requirements
 - Android API 16 or higher
-- Android Studio 3.3.1+
+- Android Studio 4.1+
 - Java 1.8+
 
 ## Installation
@@ -46,7 +46,7 @@ Then, add this dependency to your app build.gradle file:
 
 ```
 	dependencies {
-		compile 'com.github.cdisdero:CRDCrypt-Android:1.0.2'
+		compile 'com.github.cdisdero:CRDCrypt-Android:1.0.3'
 	}
 ```
 

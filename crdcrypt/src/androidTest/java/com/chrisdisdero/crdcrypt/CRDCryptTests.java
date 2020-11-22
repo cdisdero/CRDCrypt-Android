@@ -5,6 +5,9 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**
@@ -177,4 +180,22 @@ public class CRDCryptTests {
 
         assertNotEquals("decryption with wrong initialization vector should be unequal", expected, actual);
     }
+
+    @Test
+    public void testUTF16EBasic() throws Exception {
+        String key = "This is my master key.";
+        String value = "This is my value.";
+        byte[] expected = value.getBytes(StandardCharsets.UTF_16LE);
+        String expectedMessage = new String(expected, StandardCharsets.UTF_16LE);
+
+        byte[] encrypted = CRDCrypt.aes256Encrypt(key, expected, null);
+        String encryptedMessage = new String(encrypted, StandardCharsets.UTF_16LE);
+        byte[] decrypted = CRDCrypt.aes256Decrypt(key, encrypted, null);
+        String decryptedMessage = new String(decrypted, StandardCharsets.UTF_16LE);
+
+        assertFalse("encrypted bytes should be equal to decrypted bytes", Arrays.equals(encrypted, decrypted));
+        assertNotEquals("encrypted string should not be equal to decrypted string", encryptedMessage, decryptedMessage);
+        assertTrue("decrypted bytes are not equal to expected bytes", Arrays.equals(expected, decrypted));
+        assertEquals("decrypted string is not equal to expected string", expectedMessage, decryptedMessage);
+   }
 }
